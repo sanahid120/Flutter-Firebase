@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_firebase/Features/Auth/Providers/language_provider.dart';
-import 'package:flutter_firebase/l10n/app_localizations.dart';
+import 'package:flutter_firebase/extensions/localization_extension.dart';
 import 'package:provider/provider.dart';
 
 class SplashScreen extends StatelessWidget {
@@ -17,12 +17,12 @@ static String name = 'Splash_Screen';
           Center(
             child: Column(
               children: [
-                Text(AppLocalizations.of(context).hello),
+                Text(context.localization.hello),
                 FilledButton(onPressed: (){
                   Locale locale = context.read<LanguageProvider>().currentLocale;
                   locale == Locale('en') ? context.read<LanguageProvider>().changeLocale(Locale('bn')) : context.read<LanguageProvider>().changeLocale(Locale('en'));
 
-                }, child: Text(AppLocalizations.of(context).changeYourLanguage))
+                }, child: Text(context.localization.changeYourLanguage))
 
               ],
             )
