@@ -1,37 +1,43 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_firebase/Features/Auth/Providers/language_provider.dart';
-import 'package:flutter_firebase/extensions/localization_extension.dart';
-import 'package:provider/provider.dart';
+import 'package:flutter_firebase/Features/Auth/Presentation/Screens/homepage.dart';
+import 'package:flutter_firebase/app/asset_path.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
-class SplashScreen extends StatelessWidget {
+
+class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
-static String name = 'Splash_Screen';
+
+  static const String name = '/';
+
+  @override
+  State<SplashScreen> createState() => _SplashScreenState();
+}
+
+class _SplashScreenState extends State<SplashScreen> {
+  @override
+  void initState() {
+    super.initState();
+    _navigateToNextScreen();
+  }
+
+  Future<void> _navigateToNextScreen() async {
+    await Future.delayed(const Duration(seconds: 5));
+
+    Navigator.pushReplacementNamed(context, Homepage.name);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SafeArea(child: Column(
-        mainAxisAlignment: .center,
-        crossAxisAlignment: .center,
-
-        children: [
-          Center(
-            child: Column(
-              children: [
-                Text(context.localization.hello),
-                FilledButton(onPressed: (){
-                  Locale locale = context.read<LanguageProvider>().currentLocale;
-                  locale == Locale('en') ? context.read<LanguageProvider>().changeLocale(Locale('bn')) : context.read<LanguageProvider>().changeLocale(Locale('en'));
-
-                }, child: Text(context.localization.changeYourLanguage))
-
-              ],
-            )
-
-
-          )
-        ],
-      )),
-
+      body: Padding(
+        padding: const EdgeInsets.all(16),
+        child: Column(
+          children: [
+            Expanded(child: Center(child: SvgPicture.asset(AssetPaths.logoSvg))),
+            CircularProgressIndicator(),
+          ],
+        ),
+      ),
     );
   }
 }

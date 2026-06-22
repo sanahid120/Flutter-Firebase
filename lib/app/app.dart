@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_firebase/Features/Auth/Providers/language_provider.dart';
+import 'package:flutter_firebase/Features/Auth/Providers/theme_provider.dart';
 import 'package:flutter_firebase/app/app_routes.dart';
 import 'package:flutter_firebase/app/app_theme.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -15,10 +16,12 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
+
         ChangeNotifierProvider(create: (context)=> LanguageProvider()),
+        ChangeNotifierProvider(create: (context)=> ThemeProvider()),
       ],
-      child: Consumer<LanguageProvider>(
-        builder: ( context, languageProvider , child) {
+      child: Consumer2<LanguageProvider,ThemeProvider>(
+        builder: ( context, languageProvider, themeProvider , child) {
           return MaterialApp(
 
             title: 'Flutter Firebase',
@@ -32,8 +35,9 @@ class MyApp extends StatelessWidget {
             locale: languageProvider.currentLocale,
             supportedLocales: languageProvider.supportedLocales,
 
-            theme: AppTheme.lightTheme,
-            darkTheme: AppTheme.darkTheme,
+            theme: themeProvider.currentTheme,
+
+
             initialRoute: '/',
             onGenerateRoute: AppRoutes.onGenerateRoute,
 

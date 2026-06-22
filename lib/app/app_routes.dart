@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_firebase/Features/Auth/Presentation/Screens/homepage.dart';
 import 'package:flutter_firebase/Features/Auth/Presentation/Screens/splash_screen.dart';
 
 class AppRoutes {
@@ -8,8 +9,11 @@ class AppRoutes {
 
     switch (settings.name) {
 
-      case'/':
+      case SplashScreen.name:
         widget = const SplashScreen();
+        break;
+      case Homepage.name:
+        widget = const Homepage();
         break;
     }
 

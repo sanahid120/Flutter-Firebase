@@ -18,6 +18,7 @@ class AppTheme {
     brightness: Brightness.dark,
     progressIndicatorTheme: _circularProgressIndicatorTheme,
     textTheme: _textTheme,
+    scaffoldBackgroundColor: Colors.black,
     inputDecorationTheme: _inputDecoration,
     filledButtonTheme: _filledButtonTheme,
   );
